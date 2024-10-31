@@ -3,6 +3,8 @@ const nodeSelect = document.querySelector('.node-select');
 
 const apiKey = '46834432-8a53092628e33a278a1baf5c7';
 
+// when any part of the canvas is clicked, we will determing
+// the position of the click and add the node to that location
 canvas.addEventListener('click', (event) => {
     if (event.target === canvas) {
         const { x, y } = getClickPosition(event);
@@ -11,8 +13,10 @@ canvas.addEventListener('click', (event) => {
     }
 });
 
+// function for handling image search
+// uses pixabay API and gets the first 20 images
 async function searchForImage(query) {
-    const url = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(query)}&image_type=photo&per_page=10`;
+    const url = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(query)}&image_type=photo&per_page=20`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -23,6 +27,8 @@ async function searchForImage(query) {
     }
 }
 
+// get the position of where the user is clicking currenty.
+// This is used to determing where the node is placed
 function getClickPosition(event) {
     return {
         x: event.clientX - 100,
@@ -30,10 +36,12 @@ function getClickPosition(event) {
     };
 }
 
+// creates a node on the mind map
+// NOTE: The node itself looks a little clunky. needs some work still
 function createNode(x, y, nodeType) {
     const node = document.createElement('div');
-    const nodeInput = document.createElement('input');
-    const removeNodeBtn = document.createElement('button');
+    const nodeInput = document.createElement('input'); // text input where users can identify the node
+    const removeNodeBtn = document.createElement('button'); // button to remove the node
 
     node.className = 'node rounded-full p-4 absolute flex flex-col items-center text-center';
     node.style.left = `${x}px`;
@@ -72,6 +80,7 @@ function createNode(x, y, nodeType) {
     return node;
 }
 
+// set the color of the node based of what type it is
 function setNodeBorder(node, nodeType) {
     switch (nodeType) {
         case 'value':
@@ -85,6 +94,7 @@ function setNodeBorder(node, nodeType) {
     }
 }
 
+// create the popup that allows the user to choose an image
 function createImagePopup(images, node) { 
     const popup = document.createElement('div');
     popup.innerHTML = `
@@ -114,9 +124,10 @@ function createImagePopup(images, node) {
     return popup;
 }
 
+// add the selected image to the bottom of the node
 function addImageToNode(node, imageURL) {
     const img = document.createElement('img');
     img.src = imageURL;
-    img.className = 'w-16 h-16 object-cover';
+    img.className = 'w-24 h-24 object-cover rounded-md';
     node.appendChild(img);
 }
