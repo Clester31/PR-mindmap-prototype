@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-    <div class="p-4 flex flex-row">
-        <h1 class="text-3xl font-bold underline">
-            Mind Map
-        </h1>
-        <div class="flex flex-row text-center items-center ml-10">
-            <label for="node-select">Select node type:</label>
-            <select class="node-select mx-5 border-black border-2">
-                <option value="value">Value</option>
-                <option value="role">Role</option>
-                <option value="asset">Asset</option>
-            </select>
-        </div>
+  <body>
+    <div class="p-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold underline">Mind Map</h1>
+      <div class="flex items-center">
+        <label for="node-select">Select node type:</label>
+        <select class="node-select mx-5 border-black border-2">
+          <option value="value">Value</option>
+          <option value="role">Role</option>
+          <option value="asset">Asset</option>
+        </select>
+        <button
+          id="play-audio"
+          class="bg-green-500 px-4 py-2 text-white rounded"
+        >
+          Play Audio
+        </button>
+        <audio id="audio-player" src="audio.mp3" preload="auto"></audio>
+      </div>
     </div>
-    <main class="h-screen w-screen flex justify-center">
-        <div class="mm-canvas w-11/12 h-screen border-2 border-black rounded-xl items-center justify-center mt-10"
-            id="canvas">
-        </div>
+    <main class="h-screen flex">
+      <div
+        class="mm-canvas w-11/12 h-screen border-2 border-black rounded-xl items-center justify-center mt-10"
+        id="canvas"
+      ></div>
     </main>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="app.js"></script>
-</body>
-
+  </body>
 </html>
