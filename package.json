@@ -3,7 +3,8 @@
     "tailwindcss": "^3.4.14"
   },
   "dependencies": {
-    "google-images": "^2.1.0"
+    "google-images": "^2.1.0",
+    "test-package": "file:"
   },
   "type": "module",
   "main": "app.js",

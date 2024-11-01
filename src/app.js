@@ -137,3 +137,15 @@ function addImageToNode(node, imageURL) {
     img.className = 'w-24 h-24 object-cover rounded-md';
     node.appendChild(img);
 }
+
+// select the audio element and the play button
+const audioPlayer = document.getElementById('audio-player');
+const playAudioButton = document.getElementById('play-audio');
+
+// add event listener to the play button
+playAudioButton.addEventListener('click', () => {
+    // play the audio
+    audioPlayer.play().catch(error => {
+        console.error("Error playing audio: ", error);
+    });
+});
